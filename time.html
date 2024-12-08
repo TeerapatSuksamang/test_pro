@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Clock</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        .clock {
+            font-size: 3rem;
+            color: #333;
+        }
+        .date {
+            font-size: 1.5rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="date">Loading date...</div>
+    <div class="clock">Loading time...</div>
+
+    <script>
+        // ฟังก์ชันอัพเดทเวลาแบบ Real-time
+        function updateTime() {
+            $.ajax({
+                url: "time.php", // ไฟล์ PHP สำหรับดึงเวลา
+                method: "GET",
+                dataType: "json", // รับข้อมูลแบบ JSON
+                success: function(response) {
+                    // อัพเดทเวลาและวันที่บนหน้าเว็บ
+                    $(".clock").text(response.time);
+                    $(".date").text(response.date);
+                },
+                error: function() {
+                    console.error("ไม่สามารถดึงข้อมูลเวลาได้");
+                }
+            });
+        }
+
+        // เรียกฟังก์ชัน updateTime ทุก ๆ 1 วินาที
+        setInterval(updateTime, 1000);
+        updateTime(); // เรียกครั้งแรกทันที
+    </script>
+
+</body>
+</html>
