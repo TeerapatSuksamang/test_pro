@@ -16,7 +16,7 @@
             if($select -> num_rows > 0){
                 $row = mysqli_fetch_array($select);
                 // echo $row['std_name'];
-                $_SESSION['std_id'] = $row['id'];
+                $_SESSION['std_id'] = $row['std_id'];
                 // echo $_SESSION['std_id'];
                 header('location: ../index.php');
             } else {

@@ -87,23 +87,29 @@
     if(isset($_POST['time_set'])){
         date_default_timezone_set("Asia/Bangkok");
         $date = $_POST['date'];
-        $time_start = $_POST['time_start'];
-        $time_end = $_POST['time_end'];
+        
+        // $time_start = DateTime::createFromFormat('H:i', $_POST['time_start'])->format('H:i');
+        list($hour, $minute) = explode(':', $_POST['time_start']);
+        $time_start = "$hour:$minute";
+
+        // $time_end = DateTime::createFromFormat('H:i', $_POST['time_end'])->format('H:i');
+        list($hour, $minute) = explode(':', $_POST['time_end']);
+        $time_end = "$hour:$minute";
 
         echo $date.'</br>';
         echo $time_start.'</br>';
         echo $time_end.'</br>';
 
-        // $sql = mysqli_query($conn, "UPDATE `admin` SET
-        // `date` = '$date',
-        // `time_start` = '$time_start',
-        // `time_end` = '$time_end' WHERE `admin_id` = '".$_SESSION['admin_id']."' ");
+        $sql = mysqli_query($conn, "UPDATE `admin` SET
+        `date` = '$date',
+        `time_start` = TIME_FORMAT('$time_start', '%H:%i'),
+        `time_end` = TIME_FORMAT('$time_end', '%H:%i') WHERE `admin_id` = '".$_SESSION['admin_id']."' ");
 
-        // if($sql){
-        //     alert('แก้ไขเวลาสำเร็จ');
-        // } else {
-        //     alert('เกิดข้อผิดพลาดในการแก้ไข');
-        // } 
+        if($sql){
+            alert('แก้ไขเวลาสำเร็จ', '../time_set.php');
+        } else {
+            alert('เกิดข้อผิดพลาดในการแก้ไข');
+        } 
     }
 
 ?>

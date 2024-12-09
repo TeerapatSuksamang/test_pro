@@ -17,16 +17,10 @@
 
 </head>
 <body class="login-bg">
-    <?php
-        include_once 'std_session.php';
-        $select = mysqli_query($conn, "SELECT * FROM `student` WHERE `std_id` = '".$_SESSION['std_id']."' ");
-        $row = mysqli_fetch_array($select);
-    ?>
-
     <img src="img/logo.png" alt="" class="login-bg-img">
     <div class="overlay-2"></div>
 
-    <a href="index.php" class="position-absolute ms-4 mt-4 text-light">
+    <a href="index.html" class="position-absolute ms-4 mt-4 text-light">
         <i class="fa-solid fa-arrow-left btn-icon"></i>
     </a>
     <div class="container pt-5">
@@ -39,7 +33,7 @@
                 <center>
                     <form action="" class="form-login w-75">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" placeholder="" id="std_code" value="<?php echo $row['std_name'] ?>" readonly>
+                            <input type="text" class="form-control" placeholder="" id="std_code" value="นายธีรภัทร สุขสำอางค์" readonly>
                             <label for="std_code">ชื่อนักศึกษา</label>
                         </div>
 
@@ -49,11 +43,11 @@
                         </div> -->
 
                         <div class="form-floating mb-5">
-                            <input type="text"  class="form-control" placeholder="" id="id_card" value="<?php echo $row['std_code'] ?>" readonly>
+                            <input type="text"  class="form-control" placeholder="" id="id_card" value="65209010011" readonly>
                             <label for="std_code">รหัสนักศึกษา</label>
                         </div>
                         
-                        <a href="logout.php" class="btn-logout">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                        <a href="login.html" class="btn-logout">ออกจากระบบ <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                         
                     </form>
                 </center>
