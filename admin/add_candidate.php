@@ -80,15 +80,7 @@
     
 
 
-    <script>
-        img_upload.onchange = function(e){
-            const file = e.target.files[0];
-            if(file){
-                preview.src = URL.createObjectURL(file); 
-                // สร้าง URL ชั่วคราวจากไฟล์ที่ถูกเลือก แล้วมากำหนดที่ src ของ <img id="preview"> (มั้ง)
-            }
-        }
-    </script>
+
 
 </body>
 </html>
